@@ -15,7 +15,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "subscribes")
+@Table(name = "subscribe")
 public class SubscribeEntity extends AuditableEntity {
 
     @Id
@@ -43,4 +43,7 @@ public class SubscribeEntity extends AuditableEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
+
+    @Column(name = "user_id", updatable = false, insertable = false)
+    private long userId;
 }

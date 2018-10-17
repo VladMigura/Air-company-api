@@ -14,7 +14,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "user_discounts")
+@Table(name = "user_discount")
 public class UserDiscountEntity {
 
     @Id
@@ -27,6 +27,9 @@ public class UserDiscountEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
+
+    @Column(name = "user_id", updatable = false, insertable = false)
+    private long userId;
 
     @Column(name = "from_date")
     private Instant fromDate;

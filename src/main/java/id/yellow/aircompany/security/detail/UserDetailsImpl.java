@@ -54,4 +54,8 @@ public class UserDetailsImpl implements UserDetails {
     public String getRole() {
         return userEntity.getRole().toString();
     }
+
+    public long getId() {
+        return userEntity.getId();
+    }
 }

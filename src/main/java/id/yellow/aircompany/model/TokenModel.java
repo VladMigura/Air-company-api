@@ -1,6 +1,5 @@
 package id.yellow.aircompany.model;
 
-import id.yellow.aircompany.entity.TokenEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,12 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class TokenModel {
 
+    private long id;
     private String value;
-
-    public static TokenModel from(TokenEntity tokenEntity) {
-
-        return TokenModel.builder()
-                .value(tokenEntity.getValue())
-                .build();
-    }
+    private long userId;
 }

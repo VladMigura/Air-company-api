@@ -1,6 +1,5 @@
 package id.yellow.aircompany.entity;
 
-import id.yellow.aircompany.model.FlightModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "flights")
+@Table(name = "flight")
 public class FlightEntity extends AuditableEntity {
 
     @Id

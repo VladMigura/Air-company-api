@@ -1,6 +1,5 @@
 package id.yellow.aircompany.entity;
 
-import id.yellow.aircompany.model.FlightDiscountModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +14,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "flight_discounts")
+@Table(name = "flight_discount")
 public class FlightDiscountEntity extends AuditableEntity {
 
     @Id
@@ -28,6 +27,9 @@ public class FlightDiscountEntity extends AuditableEntity {
     @ManyToOne
     @JoinColumn(name = "flight_id")
     private FlightEntity flightEntity;
+
+    @Column(name = "flight_id", updatable = false, insertable = false)
+    private long flightId;
 
     @Column(name = "from_date")
     private Instant fromDate;

@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "tokens")
+@Table(name = "token")
 public class TokenEntity extends AuditableEntity {
 
     @Id
@@ -25,4 +25,7 @@ public class TokenEntity extends AuditableEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
+
+    @Column(name = "user_id", updatable = false, insertable = false)
+    private long userId;
 }

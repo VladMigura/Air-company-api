@@ -16,31 +16,10 @@ import java.util.List;
 @Builder
 public class TicketModel {
 
+    private long id;
     private long serialNumber;
-    private long flightSerialNumber;
-    private String username;
+    private long flightId;
+    private long userId;
     private String place;
     private BigDecimal price;
-
-    public static TicketModel from(TicketEntity ticketEntity) {
-
-        return TicketModel.builder()
-                .serialNumber(ticketEntity.getSerialNumber())
-                .flightSerialNumber(ticketEntity.getFlightEntity().getSerialNumber())
-                .username(ticketEntity.getUserEntity().getUsername())
-                .place(ticketEntity.getPlace())
-                .price(ticketEntity.getPrice())
-                .build();
-    }
-
-    public static List<TicketModel> ticketModels(List<TicketEntity> ticketEntities) {
-
-        List<TicketModel> ticketModels = new ArrayList<>();
-
-        ticketEntities.forEach(ticketEntity -> {
-            ticketModels.add(TicketModel.from(ticketEntity));
-        });
-
-        return ticketModels;
-    }
 }

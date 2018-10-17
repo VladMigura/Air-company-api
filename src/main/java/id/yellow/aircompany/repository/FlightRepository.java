@@ -7,14 +7,41 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.math.BigDecimal;
-import java.time.Instant;
+import javax.transaction.Transactional;
 
 public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
 
-    @Query(value = "", nativeQuery = true)
-    Page<FlightEntity> findAllByParameters(@Param("dateFrom") Instant dateFrom, @Param("dateTo") Instant dateTo,
-                                           @Param("destFrom") String destFrom, @Param("destTo") String destTo,
-                                           @Param("priceFrom") BigDecimal priceFrom, @Param("priceTo") BigDecimal priceTo,
+    @Query(value = "SELECT * " +
+                    "FROM flight " +
+                    "WHERE (:dateFromString IS NULL OR date_time >= to_timestamp(CAST(:dateFromString AS TEXT), " +
+                    "'yyyy-mm-ddThh24-mi-ss.maZ')) " +
+                    "AND (:dateToString IS NULL OR date_time <= to_timestamp(CAST(:dateToString AS TEXT), " +
+                    "'yyyy-mm-ddThh24-mi-ss.maZ')) " +
+                    "AND (:destFrom IS NULL OR destination_from = CAST(:destFrom AS TEXT)) " +
+                    "AND (:destTo IS NULL OR destination_to = CAST(:destTo AS TEXT)) " +
+                    "AND (:priceFrom = -1 OR price >= CAST(:priceFrom AS NUMERIC)) " +
+                    "AND (:priceTo = -1 OR price <= CAST(:priceTo AS NUMERIC)) /*--#pageable*/",
+            countQuery = "SELECT count(*) " +
+                    "FROM flight " +
+                    "WHERE (:dateFromString IS NULL OR date_time >= to_timestamp(CAST(:dateFromString AS TEXT), " +
+                    "'yyyy-mm-ddThh24-mi-ss.maZ')) " +
+                    "AND (:dateToString IS NULL OR date_time <= to_timestamp(CAST(:dateToString AS TEXT), " +
+                    "'yyyy-mm-ddThh24-mi-ss.maZ')) " +
+                    "AND (:destFrom IS NULL OR destination_from = CAST(:destFrom AS TEXT)) " +
+                    "AND (:destTo IS NULL OR destination_to = CAST(:destTo AS TEXT)) " +
+                    "AND (:priceFrom IS -1 OR price >= CAST(:priceFrom AS NUMERIC)) " +
+                    "AND (:priceTo IS -1 OR price <= CAST(:priceTo AS NUMERIC))",
+            nativeQuery = true)
+    Page<FlightEntity> findAllByParameters(@Param("dateFromString") String dateFromString,
+                                           @Param("dateToString") String dateToString,
+                                           @Param("destFrom") String destFrom,
+                                           @Param("destTo") String destTo,
+                                           @Param("priceFrom") double priceFrom,
+                                           @Param("priceTo") double priceTo,
                                            Pageable pageable);
+
+    FlightEntity findOneById(long id);
+
+    @Transactional
+    void deleteOneBySerialNumber(long serialNumber);
 }

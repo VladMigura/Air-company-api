@@ -3,9 +3,11 @@ package id.yellow.aircompany.controller;
 import id.yellow.aircompany.model.FlightModel;
 import id.yellow.aircompany.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -17,25 +19,43 @@ public class FlightController {
     @GetMapping("/flights")
     public List<FlightModel> getFlights(@RequestParam(name = "page", required = false, defaultValue = "1") int page,
                                         @RequestParam(name = "pageSize", required = false, defaultValue = "20") int pageSize,
-                                        @RequestParam(name = "dateFrom", required = false) String dateFrom,
-                                        @RequestParam(name = "dateTo", required = false) String dateTo,
+                                        @RequestParam(name = "dateFrom", required = false) LocalDate dateFrom,
+                                        @RequestParam(name = "dateTo", required = false) LocalDate dateTo,
                                         @RequestParam(name = "destFrom", required = false) String destFrom,
                                         @RequestParam(name = "destTo", required = false) String destTo,
-                                        @RequestParam(name = "priceFrom", required = false) BigDecimal priceFrom,
-                                        @RequestParam(name = "priceTo", required = false) BigDecimal priceTo) {
+                                        @RequestParam(name = "priceFrom", required = false, defaultValue = "-1") BigDecimal priceFrom,
+                                        @RequestParam(name = "priceTo", required = false, defaultValue = "-1") BigDecimal priceTo,
+                                        @RequestParam(name = "sortByDate", required = false, defaultValue = "ASC") String sortByDate,
+                                        @RequestParam(name = "sortByPrice", required = false, defaultValue = "ASC") String sortByPrice) {
 
-        return null;
+        return flightService.getFlights(page, pageSize, dateFrom, dateTo, destFrom, destTo,
+                                        priceFrom, priceTo, sortByDate, sortByPrice);
+    }
+
+    @GetMapping("/flights/{id}")
+    public FlightModel getFlightById(@PathVariable long id) {
+
+        return flightService.getFlightById(id);
     }
 
     @PostMapping("/flights")
-    public void createFlight() {
+    @ResponseStatus(HttpStatus.CREATED)
+    public FlightModel createFlight(@RequestBody FlightModel flightModel) {
 
-
+        return flightService.createFlight(flightModel);
     }
 
-    @PutMapping("/flights")
-    public void updateFlight() {
+    @PutMapping("/flights/{id}")
+    public FlightModel updateFlight(@PathVariable long id,
+                             @RequestBody FlightModel flightModel) {
 
+        return flightService.updateFlight(id, flightModel);
+    }
 
+    @DeleteMapping("/flights/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteFlight(@PathVariable long id) {
+
+        flightService.deleteFlight(id);
     }
 }

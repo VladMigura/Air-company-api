@@ -6,6 +6,6 @@ import id.yellow.aircompany.model.TokenModel;
 
 public interface UserService {
 
-    boolean registerUser(RegisterModel registerModel);
-    TokenModel loginUser(LoginModel loginModel);
+    void signUpUser(RegisterModel registerModel);
+    TokenModel signInUser(LoginModel loginModel);
 }
