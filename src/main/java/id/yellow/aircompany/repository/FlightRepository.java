@@ -12,15 +12,15 @@ import javax.transaction.Transactional;
 public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
 
     @Query(value = "SELECT * " +
-                    "FROM flight " +
-                    "WHERE (:dateFromString IS NULL OR date_time >= to_timestamp(CAST(:dateFromString AS TEXT), " +
-                    "'yyyy-mm-ddThh24-mi-ss.maZ')) " +
-                    "AND (:dateToString IS NULL OR date_time <= to_timestamp(CAST(:dateToString AS TEXT), " +
-                    "'yyyy-mm-ddThh24-mi-ss.maZ')) " +
-                    "AND (:destFrom IS NULL OR destination_from = CAST(:destFrom AS TEXT)) " +
-                    "AND (:destTo IS NULL OR destination_to = CAST(:destTo AS TEXT)) " +
-                    "AND (:priceFrom = -1 OR price >= CAST(:priceFrom AS NUMERIC)) " +
-                    "AND (:priceTo = -1 OR price <= CAST(:priceTo AS NUMERIC)) /*--#pageable*/",
+                "FROM flight " +
+                "WHERE (:dateFromString IS NULL OR date_time >= to_timestamp(CAST(:dateFromString AS TEXT), " +
+                "'yyyy-mm-ddThh24-mi-ss.maZ')) " +
+                "AND (:dateToString IS NULL OR date_time <= to_timestamp(CAST(:dateToString AS TEXT), " +
+                "'yyyy-mm-ddThh24-mi-ss.maZ')) " +
+                "AND (:destFrom IS NULL OR destination_from = CAST(:destFrom AS TEXT)) " +
+                "AND (:destTo IS NULL OR destination_to = CAST(:destTo AS TEXT)) " +
+                "AND (:priceFrom = -1 OR price >= CAST(:priceFrom AS NUMERIC)) " +
+                "AND (:priceTo = -1 OR price <= CAST(:priceTo AS NUMERIC)) ",
             countQuery = "SELECT count(*) " +
                     "FROM flight " +
                     "WHERE (:dateFromString IS NULL OR date_time >= to_timestamp(CAST(:dateFromString AS TEXT), " +
@@ -29,8 +29,8 @@ public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
                     "'yyyy-mm-ddThh24-mi-ss.maZ')) " +
                     "AND (:destFrom IS NULL OR destination_from = CAST(:destFrom AS TEXT)) " +
                     "AND (:destTo IS NULL OR destination_to = CAST(:destTo AS TEXT)) " +
-                    "AND (:priceFrom IS -1 OR price >= CAST(:priceFrom AS NUMERIC)) " +
-                    "AND (:priceTo IS -1 OR price <= CAST(:priceTo AS NUMERIC))",
+                    "AND (:priceFrom = -1 OR price >= CAST(:priceFrom AS NUMERIC)) " +
+                    "AND (:priceTo = -1 OR price <= CAST(:priceTo AS NUMERIC)) ",
             nativeQuery = true)
     Page<FlightEntity> findAllByParameters(@Param("dateFromString") String dateFromString,
                                            @Param("dateToString") String dateToString,
@@ -43,5 +43,5 @@ public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
     FlightEntity findOneById(long id);
 
     @Transactional
-    void deleteOneBySerialNumber(long serialNumber);
+    void deleteOneById(long id);
 }

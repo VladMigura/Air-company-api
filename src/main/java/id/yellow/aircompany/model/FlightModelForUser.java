@@ -12,7 +12,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class FlightModel {
+public class FlightModelForUser {
 
     private long id;
     private long serialNumber;
@@ -20,5 +20,6 @@ public class FlightModel {
     private String destinationFrom;
     private String destinationTo;
     private BigDecimal price;
+    private BigDecimal priceWithDiscount;
     private int numOfSeats;
 }

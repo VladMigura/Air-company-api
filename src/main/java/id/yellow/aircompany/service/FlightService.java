@@ -1,6 +1,7 @@
 package id.yellow.aircompany.service;
 
-import id.yellow.aircompany.model.FlightModel;
+import id.yellow.aircompany.model.FlightModelForCreating;
+import id.yellow.aircompany.model.FlightModelForUser;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -8,12 +9,12 @@ import java.util.List;
 
 public interface FlightService {
 
-    List<FlightModel> getFlights(int page, int pageSize, LocalDate dateFrom, LocalDate dateTo,
-                                 String destFrom, String destTo, BigDecimal priceFrom, BigDecimal priceTo,
-                                 String sortByDate, String sortByPrice);
+    List<FlightModelForUser> getFlights(int page, int pageSize, LocalDate dateFrom, LocalDate dateTo,
+                                        String destFrom, String destTo, BigDecimal priceFrom, BigDecimal priceTo,
+                                        String sortByDate, String sortByPrice);
 
-    FlightModel getFlightById(long id);
-    FlightModel createFlight(FlightModel flightModel);
-    FlightModel updateFlight(long id, FlightModel flightModel);
+    FlightModelForUser getFlightById(long id);
+    FlightModelForCreating createFlight(FlightModelForCreating flightModelForCreating);
+    FlightModelForCreating updateFlight(long id, FlightModelForCreating flightModelForCreating);
     void deleteFlight(long id);
 }

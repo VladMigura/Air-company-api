@@ -56,7 +56,7 @@ public class SecurityUtility {
         return false;
     }
 
-    private static boolean isAuthenticated() {
+    public static boolean isAuthenticated() {
 
         return SecurityContextHolder.getContext().getAuthentication() != null
                 && SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof UserDetailsImpl;

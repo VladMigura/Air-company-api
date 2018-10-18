@@ -1,14 +1,15 @@
 package id.yellow.aircompany.service;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import id.yellow.aircompany.converter.FlightConverter;
 import id.yellow.aircompany.entity.FlightEntity;
 import id.yellow.aircompany.exception.NotFoundException;
-import id.yellow.aircompany.model.FlightModel;
+import id.yellow.aircompany.model.FlightModelForCreating;
+import id.yellow.aircompany.model.FlightModelForUser;
 import id.yellow.aircompany.repository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +25,9 @@ public class FlightServiceImpl implements FlightService {
     private FlightRepository flightRepository;
 
     @Override
-    public List<FlightModel> getFlights(int page, int pageSize, LocalDate dateFrom, LocalDate dateTo,
-                                        String destFrom, String destTo, BigDecimal priceFrom, BigDecimal priceTo,
-                                        String sortByDate, String sortByPrice) {
+    public List<FlightModelForUser> getFlights(int page, int pageSize, LocalDate dateFrom, LocalDate dateTo,
+                                               String destFrom, String destTo, BigDecimal priceFrom, BigDecimal priceTo,
+                                               String sortByDate, String sortByPrice) {
 
         String dateFromString = dateFrom == null ? null :
                 dateFrom.atStartOfDay().toInstant(ZoneOffset.UTC).toString();
@@ -34,32 +35,22 @@ public class FlightServiceImpl implements FlightService {
         String dateToString = dateTo == null ? null :
                 dateTo.atStartOfDay().toInstant(ZoneOffset.UTC).toString();
 
-        Sort.Order dateTimeOrder = new Sort.Order(sortByDate.equals("ASC") ? Sort.Direction.ASC :
-                Sort.Direction.DESC, "date_time");
-        Sort.Order priceOrder = new Sort.Order(sortByPrice.equals("ASC") ? Sort.Direction.ASC :
-                Sort.Direction.DESC, "price");
+        Pageable pageable = PageRequest.of(page - 1, pageSize);
 
-        Pageable pageable = PageRequest.of(page - 1, pageSize, new Sort(Sort.Direction.ASC, "price"));
+        List<FlightEntity> flightEntities = flightRepository.findAllByParameters(dateFromString, dateToString,
+                destFrom, destTo, priceFrom.doubleValue(), priceTo.doubleValue(), pageable).getContent();
 
-        List<FlightEntity> flightEntities = flightRepository.findAllByParameters(
-                dateFromString,
-                dateToString,
-                destFrom,
-                destTo,
-                priceFrom.doubleValue(),
-                priceTo.doubleValue(),
-                pageable).getContent();
-
-        return FlightConverter.toFlightModels(flightEntities);
+        return FlightConverter.toFlightModelsForUser(flightEntities);
     }
 
+    //TODO Add discount calculator
     @Override
-    public FlightModel getFlightById(long id) {
+    public FlightModelForUser getFlightById(long id) {
 
         FlightEntity flightEntity = flightRepository.findOneById(id);
 
         if(flightEntity != null) {
-            return FlightConverter.toFlightModel(flightEntity);
+            return FlightConverter.toFlightModelForUser(flightEntity);
         }
 
         throw new NotFoundException("Flight with this serial number is not found!");
@@ -67,30 +58,30 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     @PreAuthorize("@securityUtility.isAdmin()")
-    public FlightModel createFlight(FlightModel flightModel) {
+    public FlightModelForCreating createFlight(FlightModelForCreating flightModelForCreating) {
 
-        flightRepository.save(FlightConverter.toFlightEntity(flightModel));
+        flightRepository.save(FlightConverter.toFlightEntity(flightModelForCreating));
 
-        return flightModel;
+        return flightModelForCreating;
     }
 
     @Override
     @PreAuthorize("@securityUtility.isAdmin()")
-    public FlightModel updateFlight(long id, FlightModel flightModel) {
+    public FlightModelForCreating updateFlight(long id, FlightModelForCreating flightModelForCreating) {
 
         FlightEntity flightEntity = flightRepository.findOneById(id);
 
         if(flightEntity != null) {
-            flightEntity.setSerialNumber(flightModel.getSerialNumber());
-            flightEntity.setDateTime(flightModel.getDateTime());
-            flightEntity.setDestinationFrom(flightModel.getDestinationFrom());
-            flightEntity.setDestinationTo(flightModel.getDestinationTo());
-            flightEntity.setPrice(flightModel.getPrice());
-            flightEntity.setNumOfSeats(flightModel.getNumOfSeats());
+            flightEntity.setSerialNumber(flightModelForCreating.getSerialNumber());
+            flightEntity.setDateTime(flightModelForCreating.getDateTime());
+            flightEntity.setDestinationFrom(flightModelForCreating.getDestinationFrom());
+            flightEntity.setDestinationTo(flightModelForCreating.getDestinationTo());
+            flightEntity.setPrice(flightModelForCreating.getPrice());
+            flightEntity.setNumOfSeats(flightModelForCreating.getNumOfSeats());
 
             flightRepository.save(flightEntity);
 
-            return flightModel;
+            return flightModelForCreating;
         }
 
         throw new NotFoundException("Flight with this serial number is not found!");
@@ -102,9 +93,9 @@ public class FlightServiceImpl implements FlightService {
         FlightEntity flightEntity = flightRepository.findOneById(id);
 
         if(flightEntity != null) {
-            flightRepository.deleteOneBySerialNumber(id);
+            flightRepository.deleteOneById(id);
         } else {
-            throw new NotFoundException("Flight with this serial number is not found!");
+            throw new NotFoundException("Flight is not found!");
         }
     }
 }

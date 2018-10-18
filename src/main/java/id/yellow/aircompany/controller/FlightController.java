@@ -1,6 +1,7 @@
 package id.yellow.aircompany.controller;
 
-import id.yellow.aircompany.model.FlightModel;
+import id.yellow.aircompany.model.FlightModelForCreating;
+import id.yellow.aircompany.model.FlightModelForUser;
 import id.yellow.aircompany.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,39 +18,39 @@ public class FlightController {
     private FlightService flightService;
 
     @GetMapping("/flights")
-    public List<FlightModel> getFlights(@RequestParam(name = "page", required = false, defaultValue = "1") int page,
-                                        @RequestParam(name = "pageSize", required = false, defaultValue = "20") int pageSize,
-                                        @RequestParam(name = "dateFrom", required = false) LocalDate dateFrom,
-                                        @RequestParam(name = "dateTo", required = false) LocalDate dateTo,
-                                        @RequestParam(name = "destFrom", required = false) String destFrom,
-                                        @RequestParam(name = "destTo", required = false) String destTo,
-                                        @RequestParam(name = "priceFrom", required = false, defaultValue = "-1") BigDecimal priceFrom,
-                                        @RequestParam(name = "priceTo", required = false, defaultValue = "-1") BigDecimal priceTo,
-                                        @RequestParam(name = "sortByDate", required = false, defaultValue = "ASC") String sortByDate,
-                                        @RequestParam(name = "sortByPrice", required = false, defaultValue = "ASC") String sortByPrice) {
+    public List<FlightModelForUser> getFlights(@RequestParam(name = "page", required = false, defaultValue = "1") int page,
+                                               @RequestParam(name = "pageSize", required = false, defaultValue = "20") int pageSize,
+                                               @RequestParam(name = "dateFrom", required = false) LocalDate dateFrom,
+                                               @RequestParam(name = "dateTo", required = false) LocalDate dateTo,
+                                               @RequestParam(name = "destFrom", required = false) String destFrom,
+                                               @RequestParam(name = "destTo", required = false) String destTo,
+                                               @RequestParam(name = "priceFrom", required = false, defaultValue = "-1") BigDecimal priceFrom,
+                                               @RequestParam(name = "priceTo", required = false, defaultValue = "-1") BigDecimal priceTo,
+                                               @RequestParam(name = "sortByDate", required = false, defaultValue = "ASC") String sortByDate,
+                                               @RequestParam(name = "sortByPrice", required = false, defaultValue = "ASC") String sortByPrice) {
 
         return flightService.getFlights(page, pageSize, dateFrom, dateTo, destFrom, destTo,
                                         priceFrom, priceTo, sortByDate, sortByPrice);
     }
 
     @GetMapping("/flights/{id}")
-    public FlightModel getFlightById(@PathVariable long id) {
+    public FlightModelForUser getFlightById(@PathVariable long id) {
 
         return flightService.getFlightById(id);
     }
 
     @PostMapping("/flights")
     @ResponseStatus(HttpStatus.CREATED)
-    public FlightModel createFlight(@RequestBody FlightModel flightModel) {
+    public FlightModelForCreating createFlight(@RequestBody FlightModelForCreating flightModelForCreating) {
 
-        return flightService.createFlight(flightModel);
+        return flightService.createFlight(flightModelForCreating);
     }
 
     @PutMapping("/flights/{id}")
-    public FlightModel updateFlight(@PathVariable long id,
-                             @RequestBody FlightModel flightModel) {
+    public FlightModelForCreating updateFlight(@PathVariable long id,
+                                               @RequestBody FlightModelForCreating flightModelForCreating) {
 
-        return flightService.updateFlight(id, flightModel);
+        return flightService.updateFlight(id, flightModelForCreating);
     }
 
     @DeleteMapping("/flights/{id}")

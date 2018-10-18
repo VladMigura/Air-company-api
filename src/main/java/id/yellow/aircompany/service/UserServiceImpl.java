@@ -4,22 +4,19 @@ import id.yellow.aircompany.converter.TokenConverter;
 import id.yellow.aircompany.converter.UserConverter;
 import id.yellow.aircompany.entity.TokenEntity;
 import id.yellow.aircompany.entity.UserEntity;
-import id.yellow.aircompany.enumeration.Role;
 import id.yellow.aircompany.exception.BadRequestException;
 import id.yellow.aircompany.exception.NotFoundException;
-import id.yellow.aircompany.model.LoginModel;
-import id.yellow.aircompany.model.RegisterModel;
-import id.yellow.aircompany.model.TokenModel;
+import id.yellow.aircompany.model.*;
 import id.yellow.aircompany.repository.TokenRepository;
 import id.yellow.aircompany.repository.UserRepository;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.support.TransactionTemplate;
 
-import java.util.Optional;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -33,8 +30,25 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private TransactionTemplate transactionTemplate;
+    @Override
+    public List<UserModel> getUsers(int page, int pageSize) {
+
+        Pageable pageable = PageRequest.of(page - 1, pageSize);
+
+        return UserConverter.toUserModels(userRepository.findAll(pageable).getContent());
+    }
+
+    @Override
+    public UserModel getUserById(long id) {
+
+        UserEntity userEntity = userRepository.findOneById(id);
+
+        if(userEntity != null) {
+            return UserConverter.toUserModel(userEntity);
+        }
+
+        throw new NotFoundException("User with this id is not found!");
+    }
 
     @Override
     @PreAuthorize("@securityUtility.isAdmin() or @securityUtility.isUserRole(#registerModel)")

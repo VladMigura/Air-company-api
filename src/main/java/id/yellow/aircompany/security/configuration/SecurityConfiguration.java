@@ -37,9 +37,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authenticationProvider(tokenAuthenticationProvider)
                 .authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/flights").hasAnyAuthority(Role.ADMIN.toString(), Role.USER.toString());
+                //.antMatchers("/users").hasAnyAuthority(Role.ADMIN.toString(), Role.USER.toString())
+                //.antMatchers("/users/*").hasAnyAuthority(Role.ADMIN.toString(), Role.USER.toString())
+                .antMatchers("/users/signUp").permitAll()
+                .antMatchers("/users/signIn").permitAll()
+                .antMatchers("/flights").hasAnyAuthority(Role.ADMIN.toString(), Role.USER.toString())
+                .antMatchers("/flights/*").hasAnyAuthority(Role.ADMIN.toString(), Role.USER.toString());
 
         httpSecurity.csrf().disable();
     }
