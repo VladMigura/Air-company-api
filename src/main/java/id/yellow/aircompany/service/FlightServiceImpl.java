@@ -1,19 +1,17 @@
 package id.yellow.aircompany.service;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import id.yellow.aircompany.converter.FlightConverter;
 import id.yellow.aircompany.entity.FlightEntity;
 import id.yellow.aircompany.exception.NotFoundException;
 import id.yellow.aircompany.model.FlightModelForCreating;
 import id.yellow.aircompany.model.FlightModelForUser;
 import id.yellow.aircompany.repository.FlightRepository;
+import id.yellow.aircompany.utility.DiscountCalculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.util.List;
@@ -24,9 +22,12 @@ public class FlightServiceImpl implements FlightService {
     @Autowired
     private FlightRepository flightRepository;
 
+    @Autowired
+    private DiscountCalculator discountCalculator;
+
     @Override
     public List<FlightModelForUser> getFlights(int page, int pageSize, LocalDate dateFrom, LocalDate dateTo,
-                                               String destFrom, String destTo, BigDecimal priceFrom, BigDecimal priceTo,
+                                               String destFrom, String destTo, double priceFrom, double priceTo,
                                                String sortByDate, String sortByPrice) {
 
         String dateFromString = dateFrom == null ? null :
@@ -35,32 +36,31 @@ public class FlightServiceImpl implements FlightService {
         String dateToString = dateTo == null ? null :
                 dateTo.atStartOfDay().toInstant(ZoneOffset.UTC).toString();
 
-        Pageable pageable = PageRequest.of(page - 1, pageSize);
+        List<FlightModelForUser> flightModelsForUser = FlightConverter.toFlightModelsForUser(
+                flightRepository.findAllByParameters(dateFromString, dateToString,
+                destFrom, destTo, priceFrom, priceTo, PageRequest.of(page - 1, pageSize)).getContent());
 
-        List<FlightEntity> flightEntities = flightRepository.findAllByParameters(dateFromString, dateToString,
-                destFrom, destTo, priceFrom.doubleValue(), priceTo.doubleValue(), pageable).getContent();
-
-        return FlightConverter.toFlightModelsForUser(flightEntities);
+        return discountCalculator.calculateDiscounts(flightModelsForUser);
     }
 
-    //TODO Add discount calculator
     @Override
     public FlightModelForUser getFlightById(long id) {
 
         FlightEntity flightEntity = flightRepository.findOneById(id);
 
         if(flightEntity != null) {
-            return FlightConverter.toFlightModelForUser(flightEntity);
+            return discountCalculator.calculateDiscount(FlightConverter.toFlightModelForUser(flightEntity));
         }
 
-        throw new NotFoundException("Flight with this serial number is not found!");
+        throw new NotFoundException("Flight with this id is not found!");
     }
 
     @Override
     @PreAuthorize("@securityUtility.isAdmin()")
     public FlightModelForCreating createFlight(FlightModelForCreating flightModelForCreating) {
 
-        flightRepository.save(FlightConverter.toFlightEntity(flightModelForCreating));
+        flightModelForCreating = FlightConverter.toFlightModelForCreating(flightRepository
+                .save(FlightConverter.toFlightEntity(flightModelForCreating)));
 
         return flightModelForCreating;
     }
@@ -84,7 +84,7 @@ public class FlightServiceImpl implements FlightService {
             return flightModelForCreating;
         }
 
-        throw new NotFoundException("Flight with this serial number is not found!");
+        throw new NotFoundException("Flight with this id is not found!");
     }
 
     @Override

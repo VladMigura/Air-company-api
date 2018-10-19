@@ -15,7 +15,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @Builder
 @Table(name = "user_discount")
-public class UserDiscountEntity {
+public class UserDiscountEntity extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

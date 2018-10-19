@@ -4,6 +4,7 @@ import id.yellow.aircompany.model.FlightModelForCreating;
 import id.yellow.aircompany.model.FlightModelForUser;
 import id.yellow.aircompany.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +21,14 @@ public class FlightController {
     @GetMapping("/flights")
     public List<FlightModelForUser> getFlights(@RequestParam(name = "page", required = false, defaultValue = "1") int page,
                                                @RequestParam(name = "pageSize", required = false, defaultValue = "20") int pageSize,
-                                               @RequestParam(name = "dateFrom", required = false) LocalDate dateFrom,
-                                               @RequestParam(name = "dateTo", required = false) LocalDate dateTo,
+                                               @RequestParam(name = "dateFrom", required = false)
+                                                   @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate dateFrom,
+                                               @RequestParam(name = "dateTo", required = false)
+                                                   @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate dateTo,
                                                @RequestParam(name = "destFrom", required = false) String destFrom,
                                                @RequestParam(name = "destTo", required = false) String destTo,
-                                               @RequestParam(name = "priceFrom", required = false, defaultValue = "-1") BigDecimal priceFrom,
-                                               @RequestParam(name = "priceTo", required = false, defaultValue = "-1") BigDecimal priceTo,
+                                               @RequestParam(name = "priceFrom", required = false, defaultValue = "-1") double priceFrom,
+                                               @RequestParam(name = "priceTo", required = false, defaultValue = "-1") double priceTo,
                                                @RequestParam(name = "sortByDate", required = false, defaultValue = "ASC") String sortByDate,
                                                @RequestParam(name = "sortByPrice", required = false, defaultValue = "ASC") String sortByPrice) {
 

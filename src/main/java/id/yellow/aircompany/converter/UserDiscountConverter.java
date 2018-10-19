@@ -35,7 +35,7 @@ public class UserDiscountConverter {
 
         return UserDiscountEntity.builder()
                 .value(userDiscountModel.getValue())
-                .userEntity(UserEntity.builder().id(userDiscountModel.getId()).build())
+                .userEntity(UserEntity.builder().id(userDiscountModel.getUserId()).build())
                 .fromDate(userDiscountModel.getFromDate())
                 .toDate(userDiscountModel.getToDate())
                 .build();

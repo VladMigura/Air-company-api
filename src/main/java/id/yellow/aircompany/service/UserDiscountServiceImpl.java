@@ -21,9 +21,11 @@ public class UserDiscountServiceImpl implements UserDiscountService {
 
     @Override
     @PreAuthorize("@securityUtility.isAdmin()")
-    public UserDiscountModel createUserDiscount(UserDiscountModel userDiscountModel) {
+    public UserDiscountModel createUserDiscount(long id, UserDiscountModel userDiscountModel) {
 
-        userDiscountRepository.save(UserDiscountConverter.toUserDiscountEntity(userDiscountModel));
+        userDiscountModel.setUserId(id);
+        userDiscountModel = UserDiscountConverter.toUserDiscountModel(userDiscountRepository
+                .save(UserDiscountConverter.toUserDiscountEntity(userDiscountModel)));
         return userDiscountModel;
     }
 
@@ -31,10 +33,8 @@ public class UserDiscountServiceImpl implements UserDiscountService {
     @PreAuthorize("@securityUtility.isOwnerById(#id) or @securityUtility.isAdmin()")
     public List<UserDiscountModel> getUserDiscounts(long id, int page, int pageSize) {
 
-        Pageable pageable = PageRequest.of(page - 1, pageSize);
-
         return UserDiscountConverter.toUserDiscountModels(userDiscountRepository
-                .findAll(pageable).getContent());
+                .findAll(PageRequest.of(page - 1, pageSize)).getContent());
     }
 
     @Override

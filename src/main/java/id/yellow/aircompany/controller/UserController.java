@@ -39,14 +39,15 @@ public class UserController {
         return userDiscountService.getUserDiscounts(id, page, pageSize);
     }
 
-    @PostMapping("/users/discounts")
+    @PostMapping("/users/{id}/discounts")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDiscountModel createUserDiscount(@RequestBody UserDiscountModel userDiscountModel) {
+    public UserDiscountModel createUserDiscount(@PathVariable long id,
+                                                @RequestBody UserDiscountModel userDiscountModel) {
 
-        return userDiscountService.createUserDiscount(userDiscountModel);
+        return userDiscountService.createUserDiscount(id, userDiscountModel);
     }
 
-    @DeleteMapping("/users/discount/{id}")
+    @DeleteMapping("/users/discounts/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUserDiscount(@PathVariable long id) {
 

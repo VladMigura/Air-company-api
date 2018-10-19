@@ -33,9 +33,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserModel> getUsers(int page, int pageSize) {
 
-        Pageable pageable = PageRequest.of(page - 1, pageSize);
-
-        return UserConverter.toUserModels(userRepository.findAll(pageable).getContent());
+        return UserConverter.toUserModels(userRepository
+                .findAll(PageRequest.of(page - 1, pageSize)).getContent());
     }
 
     @Override

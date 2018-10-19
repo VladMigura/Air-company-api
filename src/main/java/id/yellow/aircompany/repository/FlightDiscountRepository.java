@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface FlightDiscountRepository extends JpaRepository<FlightDiscountEntity, Long> {
 
@@ -18,10 +19,18 @@ public interface FlightDiscountRepository extends JpaRepository<FlightDiscountEn
                     "FROM flight_discount " +
                     "WHERE (:valueTo IS NULL OR flight_discount.value >= :valueTo) ",
             nativeQuery = true)
-    Page<FlightDiscountEntity> findAllByParameters(@Param("valueTo") int valueTo,
+    Page<FlightDiscountEntity> findAllByParameters(@Param("valueTo") Integer valueTo,
                                                    Pageable pageable);
 
     FlightDiscountEntity findOneById(long id);
+
+    @Query(value = "SELECT * " +
+                    "FROM flight_discount " +
+                    "WHERE flight_id = :flightId " +
+                    "AND to_date > now() " +
+                    "ORDER BY from_date ASC ",
+            nativeQuery = true)
+    List<FlightDiscountEntity> findActualAllByFlightId(@Param("flightId") Long flightId);
 
     @Transactional
     void deleteOneById(long id);

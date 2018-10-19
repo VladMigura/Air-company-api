@@ -8,19 +8,20 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
 
     @Query(value = "SELECT * " +
-                "FROM flight " +
-                "WHERE (:dateFromString IS NULL OR date_time >= to_timestamp(CAST(:dateFromString AS TEXT), " +
-                "'yyyy-mm-ddThh24-mi-ss.maZ')) " +
-                "AND (:dateToString IS NULL OR date_time <= to_timestamp(CAST(:dateToString AS TEXT), " +
-                "'yyyy-mm-ddThh24-mi-ss.maZ')) " +
-                "AND (:destFrom IS NULL OR destination_from = CAST(:destFrom AS TEXT)) " +
-                "AND (:destTo IS NULL OR destination_to = CAST(:destTo AS TEXT)) " +
-                "AND (:priceFrom = -1 OR price >= CAST(:priceFrom AS NUMERIC)) " +
-                "AND (:priceTo = -1 OR price <= CAST(:priceTo AS NUMERIC)) ",
+                    "FROM flight " +
+                    "WHERE (:dateFromString IS NULL OR date_time >= to_timestamp(CAST(:dateFromString AS TEXT), " +
+                    "'yyyy-mm-ddThh24-mi-ss.maZ')) " +
+                    "AND (:dateToString IS NULL OR date_time <= to_timestamp(CAST(:dateToString AS TEXT), " +
+                    "'yyyy-mm-ddThh24-mi-ss.maZ')) " +
+                    "AND (:destFrom IS NULL OR destination_from = CAST(:destFrom AS TEXT)) " +
+                    "AND (:destTo IS NULL OR destination_to = CAST(:destTo AS TEXT)) " +
+                    "AND (:priceFrom = -1 OR price >= CAST(:priceFrom AS NUMERIC)) " +
+                    "AND (:priceTo = -1 OR price <= CAST(:priceTo AS NUMERIC)) ",
             countQuery = "SELECT count(*) " +
                     "FROM flight " +
                     "WHERE (:dateFromString IS NULL OR date_time >= to_timestamp(CAST(:dateFromString AS TEXT), " +
@@ -41,6 +42,16 @@ public interface FlightRepository extends JpaRepository<FlightEntity, Long> {
                                            Pageable pageable);
 
     FlightEntity findOneById(long id);
+
+    @Query(value = "SELECT * " +
+                        "FROM flight " +
+                        "WHERE flight.id IN (:ids) ",
+            countQuery = "SELECT COUNT(*) " +
+                        "FROM flight " +
+                        "WHERE flight.id IN (:ids) ",
+            nativeQuery = true)
+    Page<FlightEntity> findAllByIds(@Param("ids") List<Long> ids,
+                                    Pageable pageable);
 
     @Transactional
     void deleteOneById(long id);

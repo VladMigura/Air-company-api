@@ -67,5 +67,8 @@ public class SecurityUtility {
         return registerModel.getRole().equals("USER");
     }
 
+    public static long getUserId() {
 
+        return ((UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+    }
 }

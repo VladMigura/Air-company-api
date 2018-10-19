@@ -10,7 +10,7 @@ import java.util.List;
 public interface FlightService {
 
     List<FlightModelForUser> getFlights(int page, int pageSize, LocalDate dateFrom, LocalDate dateTo,
-                                        String destFrom, String destTo, BigDecimal priceFrom, BigDecimal priceTo,
+                                        String destFrom, String destTo, double priceFrom, double priceTo,
                                         String sortByDate, String sortByPrice);
 
     FlightModelForUser getFlightById(long id);
