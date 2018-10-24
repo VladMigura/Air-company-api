@@ -25,33 +25,35 @@ public class UserController {
         return userService.getUsers(page, pageSize);
     }
 
-    @GetMapping("/users/{id}")
-    public UserModel getUserById(@PathVariable long id) {
+    @GetMapping("/users/{userId}")
+    public UserModel getUserById(@PathVariable long userId) {
 
-        return userService.getUserById(id);
+        return userService.getUserById(userId);
     }
 
-    @GetMapping("/users/{id}/discounts")
-    public List<UserDiscountModel> getUserDiscounts(@PathVariable long id,
-                                                    @RequestParam(name = "page", required = false, defaultValue = "1") int page,
-                                                    @RequestParam(name = "pageSize", required = false, defaultValue = "20") int pageSize) {
+    @GetMapping("/users/{userId}/discounts")
+    public List<UserDiscountModel> getUserDiscounts(@PathVariable long userId,
+                                                    @RequestParam(name = "page", required = false,
+                                                            defaultValue = "1") int page,
+                                                    @RequestParam(name = "pageSize", required = false,
+                                                            defaultValue = "20") int pageSize) {
 
-        return userDiscountService.getUserDiscounts(id, page, pageSize);
+        return userDiscountService.getUserDiscounts(userId, page, pageSize);
     }
 
-    @PostMapping("/users/{id}/discounts")
+    @PostMapping("/users/{userId}/discounts")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDiscountModel createUserDiscount(@PathVariable long id,
+    public UserDiscountModel createUserDiscount(@PathVariable long userId,
                                                 @RequestBody UserDiscountModel userDiscountModel) {
 
-        return userDiscountService.createUserDiscount(id, userDiscountModel);
+        return userDiscountService.createUserDiscount(userId, userDiscountModel);
     }
 
-    @DeleteMapping("/users/discounts/{id}")
+    @DeleteMapping("/users/discounts/{userDiscountId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUserDiscount(@PathVariable long id) {
+    public void deleteUserDiscount(@PathVariable long userDiscountId) {
 
-        userDiscountService.deleteUserDiscount(id);
+        userDiscountService.deleteUserDiscount(userDiscountId);
     }
 
     @PostMapping("/users/signUp")

@@ -43,4 +43,7 @@ public class UserEntity extends AuditableEntity {
 
     @OneToMany(mappedBy = "userEntity")
     private List<UserDiscountEntity> userDiscountEntities;
+
+    @OneToMany(mappedBy = "userEntity")
+    private List<WaitingRecordEntity> waitingRecordEntities;
 }

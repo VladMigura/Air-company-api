@@ -28,18 +28,6 @@ public class SubscribeEntity extends AuditableEntity {
     @Column(name = "destination_to")
     private String destinationTo;
 
-    @Column(name = "price_from")
-    private BigDecimal priceFrom;
-
-    @Column(name = "price_to")
-    private BigDecimal priceTo;
-
-    @Column(name = "date_from")
-    private Instant dateFrom;
-
-    @Column(name = "date_to")
-    private Instant dateTo;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;

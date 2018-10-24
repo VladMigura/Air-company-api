@@ -24,6 +24,22 @@ public class SecurityUtility {
         return false;
     }
 
+    public static boolean isUser() {
+
+        if(!isAuthenticated()) {
+            return false;
+        }
+
+        UserDetailsImpl userDetailsImpl = (UserDetailsImpl) SecurityContextHolder.getContext()
+                                                                .getAuthentication().getPrincipal();
+
+        if(userDetailsImpl.getRole().equals("USER")) {
+            return true;
+        }
+
+        return false;
+    }
+
     public static boolean isOwnerById(long userId) {
 
         if(!isAuthenticated()) {

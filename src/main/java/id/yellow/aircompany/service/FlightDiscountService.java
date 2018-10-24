@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface FlightDiscountService {
 
-    List<FlightDiscountModel> getFlightDiscounts(int page, int pageSize, Integer valueTo);
-    FlightDiscountModel getFlightDiscount(long id);
+    List<FlightDiscountModel> getFlightDiscounts(int page, int pageSize, Integer valueFrom);
+    FlightDiscountModel getFlightDiscount(long flightDiscountId);
     List<Long> createFlightDiscount(int value, LocalDate dateFrom, LocalDate dateTo, List<Long> flightIds);
-    void deleteFlightDiscount(long id);
+    void deleteFlightDiscount(long flightDiscountId);
 }

@@ -26,6 +26,7 @@ public class FlightServiceImpl implements FlightService {
     private DiscountCalculator discountCalculator;
 
     @Override
+    @PreAuthorize("@securityUtility.isAuthenticated()")
     public List<FlightModelForUser> getFlights(int page, int pageSize, LocalDate dateFrom, LocalDate dateTo,
                                                String destFrom, String destTo, double priceFrom, double priceTo,
                                                String sortByDate, String sortByPrice) {
@@ -44,9 +45,10 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public FlightModelForUser getFlightById(long id) {
+    @PreAuthorize("@securityUtility.isAuthenticated()")
+    public FlightModelForUser getFlightById(long flightId) {
 
-        FlightEntity flightEntity = flightRepository.findOneById(id);
+        FlightEntity flightEntity = flightRepository.findOneById(flightId);
 
         if(flightEntity != null) {
             return discountCalculator.calculateDiscount(FlightConverter.toFlightModelForUser(flightEntity));
@@ -59,17 +61,15 @@ public class FlightServiceImpl implements FlightService {
     @PreAuthorize("@securityUtility.isAdmin()")
     public FlightModelForCreating createFlight(FlightModelForCreating flightModelForCreating) {
 
-        flightModelForCreating = FlightConverter.toFlightModelForCreating(flightRepository
+        return FlightConverter.toFlightModelForCreating(flightRepository
                 .save(FlightConverter.toFlightEntity(flightModelForCreating)));
-
-        return flightModelForCreating;
     }
 
     @Override
     @PreAuthorize("@securityUtility.isAdmin()")
-    public FlightModelForCreating updateFlight(long id, FlightModelForCreating flightModelForCreating) {
+    public FlightModelForCreating updateFlight(long flightId, FlightModelForCreating flightModelForCreating) {
 
-        FlightEntity flightEntity = flightRepository.findOneById(id);
+        FlightEntity flightEntity = flightRepository.findOneById(flightId);
 
         if(flightEntity != null) {
             flightEntity.setSerialNumber(flightModelForCreating.getSerialNumber());
@@ -79,21 +79,20 @@ public class FlightServiceImpl implements FlightService {
             flightEntity.setPrice(flightModelForCreating.getPrice());
             flightEntity.setNumOfSeats(flightModelForCreating.getNumOfSeats());
 
-            flightRepository.save(flightEntity);
-
-            return flightModelForCreating;
+            return FlightConverter.toFlightModelForCreating(flightRepository.save(flightEntity));
         }
 
         throw new NotFoundException("Flight with this id is not found!");
     }
 
     @Override
-    public void deleteFlight(long id) {
+    @PreAuthorize("@securityUtility.isAdmin()")
+    public void deleteFlight(long flightId) {
 
-        FlightEntity flightEntity = flightRepository.findOneById(id);
+        FlightEntity flightEntity = flightRepository.findOneById(flightId);
 
         if(flightEntity != null) {
-            flightRepository.deleteOneById(id);
+            flightRepository.deleteOneById(flightId);
         } else {
             throw new NotFoundException("Flight is not found!");
         }

@@ -7,7 +7,7 @@ import java.util.List;
 public interface UserService {
 
     List<UserModel> getUsers(int page, int pageSize);
-    UserModel getUserById(long id);
+    UserModel getUserById(long userId);
 
     void signUpUser(RegisterModel registerModel);
     TokenModel signInUser(LoginModel loginModel);

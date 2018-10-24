@@ -4,7 +4,8 @@ CREATE TABLE user_table (
   hash_password VARCHAR(255) NOT NULL,
   role VARCHAR(255) NOT NULL,
   created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ
+  updated_at TIMESTAMPTZ,
+  deleted_at TIMESTAMPTZ
 );
 
 CREATE TABLE token (
@@ -12,7 +13,8 @@ CREATE TABLE token (
   value VARCHAR(255) NOT NULL,
   user_id BIGINT NOT NULL REFERENCES user_table(id),
   created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ
+  updated_at TIMESTAMPTZ,
+  deleted_at TIMESTAMPTZ
 );
 
 CREATE TABLE flight (
@@ -24,7 +26,8 @@ CREATE TABLE flight (
   price NUMERIC NOT NULL,
   num_of_seats INTEGER NOT NULL,
   created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ
+  updated_at TIMESTAMPTZ,
+  deleted_at TIMESTAMPTZ
 );
 
 CREATE TABLE flight_discount (
@@ -34,7 +37,8 @@ CREATE TABLE flight_discount (
   from_date TIMESTAMPTZ NOT NULL,
   to_date TIMESTAMPTZ NOT NULL,
   created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ
+  updated_at TIMESTAMPTZ,
+  deleted_at TIMESTAMPTZ
 );
 
 CREATE TABLE user_discount (
@@ -44,7 +48,8 @@ CREATE TABLE user_discount (
   from_date TIMESTAMPTZ NOT NULL,
   to_date TIMESTAMPTZ NOT NULL,
   created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ
+  updated_at TIMESTAMPTZ,
+  deleted_at TIMESTAMPTZ
 );
 
 CREATE TABLE ticket (
@@ -55,18 +60,16 @@ CREATE TABLE ticket (
   place VARCHAR(255) NOT NULL,
   price NUMERIC NOT NULL,
   created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ
+  updated_at TIMESTAMPTZ,
+  deleted_at TIMESTAMPTZ
 );
 
 CREATE TABLE subscribe (
   id BIGSERIAL PRIMARY KEY,
-  destination_from VARCHAR(255) NOT NULL,
-  destination_to VARCHAR(255) NOT NULL,
-  price_from NUMERIC NOT NULL,
-  price_to NUMERIC NOT NULL,
-  date_from TIMESTAMPTZ NOT NULL,
-  date_to TIMESTAMPTZ NOT NULL,
+  destination_from VARCHAR(255),
+  destination_to VARCHAR(255),
   user_id BIGINT NOT NULL REFERENCES user_table(id),
   created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ
+  updated_at TIMESTAMPTZ,
+  deleted_at TIMESTAMPTZ
 )

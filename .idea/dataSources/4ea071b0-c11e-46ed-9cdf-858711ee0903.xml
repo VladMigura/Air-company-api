@@ -86,8 +86,8 @@
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
       <Owner>vladmigura</Owner>
-      <IntrospectionTimestamp>2018-10-19.15:16:58.622</IntrospectionTimestamp>
-      <IntrospectionStateNumber>1366</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-10-22.18:39:30.386</IntrospectionTimestamp>
+      <IntrospectionStateNumber>1532</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -134,713 +134,801 @@
       <Type>index</Type>
     </access-method>
     <sequence id="24" parent="17" name="flight_discount_id_seq">
-      <ObjectId>35566</ObjectId>
+      <ObjectId>51575</ObjectId>
       <Owner>vladmigura</Owner>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
       <CacheSize>1</CacheSize>
       <DataType>bigint</DataType>
     </sequence>
     <sequence id="25" parent="17" name="flight_id_seq">
-      <ObjectId>35553</ObjectId>
+      <ObjectId>51562</ObjectId>
       <Owner>vladmigura</Owner>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
       <CacheSize>1</CacheSize>
       <DataType>bigint</DataType>
     </sequence>
     <sequence id="26" parent="17" name="subscribe_id_seq">
-      <ObjectId>35621</ObjectId>
+      <ObjectId>51630</ObjectId>
       <Owner>vladmigura</Owner>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
       <CacheSize>1</CacheSize>
       <DataType>bigint</DataType>
     </sequence>
     <sequence id="27" parent="17" name="ticket_id_seq">
-      <ObjectId>35598</ObjectId>
+      <ObjectId>51607</ObjectId>
       <Owner>vladmigura</Owner>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
       <CacheSize>1</CacheSize>
       <DataType>bigint</DataType>
     </sequence>
     <sequence id="28" parent="17" name="token_id_seq">
-      <ObjectId>35540</ObjectId>
+      <ObjectId>51549</ObjectId>
       <Owner>vladmigura</Owner>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
       <CacheSize>1</CacheSize>
       <DataType>bigint</DataType>
     </sequence>
     <sequence id="29" parent="17" name="user_discount_id_seq">
-      <ObjectId>35582</ObjectId>
+      <ObjectId>51591</ObjectId>
       <Owner>vladmigura</Owner>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
       <CacheSize>1</CacheSize>
       <DataType>bigint</DataType>
     </sequence>
     <sequence id="30" parent="17" name="user_table_id_seq">
-      <ObjectId>35529</ObjectId>
+      <ObjectId>51538</ObjectId>
       <Owner>vladmigura</Owner>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
       <CacheSize>1</CacheSize>
       <DataType>bigint</DataType>
     </sequence>
-    <table id="31" parent="17" name="flight">
-      <ObjectId>35555</ObjectId>
+    <sequence id="31" parent="17" name="waiting_table_id_seq">
+      <ObjectId>51646</ObjectId>
       <Owner>vladmigura</Owner>
-      <StateNumber>1366</StateNumber>
-    </table>
-    <table id="32" parent="17" name="flight_discount">
-      <ObjectId>35568</ObjectId>
+      <StateNumber>1532</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+      <CacheSize>1</CacheSize>
+      <DataType>bigint</DataType>
+    </sequence>
+    <table id="32" parent="17" name="flight">
+      <ObjectId>51564</ObjectId>
       <Owner>vladmigura</Owner>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
     </table>
-    <table id="33" parent="17" name="flyway_schema_history">
-      <ObjectId>35519</ObjectId>
+    <table id="33" parent="17" name="flight_discount">
+      <ObjectId>51577</ObjectId>
       <Owner>vladmigura</Owner>
-      <StateNumber>1363</StateNumber>
+      <StateNumber>1531</StateNumber>
     </table>
-    <table id="34" parent="17" name="subscribe">
-      <ObjectId>35623</ObjectId>
+    <table id="34" parent="17" name="flyway_schema_history">
+      <ObjectId>51528</ObjectId>
       <Owner>vladmigura</Owner>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1528</StateNumber>
     </table>
-    <table id="35" parent="17" name="ticket">
-      <ObjectId>35600</ObjectId>
+    <table id="35" parent="17" name="subscribe">
+      <ObjectId>51632</ObjectId>
       <Owner>vladmigura</Owner>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
     </table>
-    <table id="36" parent="17" name="token">
-      <ObjectId>35542</ObjectId>
+    <table id="36" parent="17" name="ticket">
+      <ObjectId>51609</ObjectId>
       <Owner>vladmigura</Owner>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
     </table>
-    <table id="37" parent="17" name="user_discount">
-      <ObjectId>35584</ObjectId>
+    <table id="37" parent="17" name="token">
+      <ObjectId>51551</ObjectId>
       <Owner>vladmigura</Owner>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
     </table>
-    <table id="38" parent="17" name="user_table">
-      <ObjectId>35531</ObjectId>
+    <table id="38" parent="17" name="user_discount">
+      <ObjectId>51593</ObjectId>
       <Owner>vladmigura</Owner>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
     </table>
-    <column id="39" parent="31" name="id">
+    <table id="39" parent="17" name="user_table">
+      <ObjectId>51540</ObjectId>
+      <Owner>vladmigura</Owner>
+      <StateNumber>1532</StateNumber>
+    </table>
+    <table id="40" parent="17" name="waiting_table">
+      <ObjectId>51648</ObjectId>
+      <Owner>vladmigura</Owner>
+      <StateNumber>1532</StateNumber>
+    </table>
+    <column id="41" parent="32" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <DefaultExpression>nextval(&apos;flight_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>20</TypeId>
       <SequenceName>flight_id_seq</SequenceName>
     </column>
-    <column id="40" parent="31" name="serial_number">
+    <column id="42" parent="32" name="serial_number">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="41" parent="31" name="date_time">
+    <column id="43" parent="32" name="date_time">
       <Position>3</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <column id="42" parent="31" name="destination_from">
+    <column id="44" parent="32" name="destination_from">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="43" parent="31" name="destination_to">
+    <column id="45" parent="32" name="destination_to">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="44" parent="31" name="price">
+    <column id="46" parent="32" name="price">
       <Position>6</Position>
       <DataType>numeric|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <column id="45" parent="31" name="num_of_seats">
+    <column id="47" parent="32" name="num_of_seats">
       <Position>7</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="46" parent="31" name="created_at">
+    <column id="48" parent="32" name="created_at">
       <Position>8</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <column id="47" parent="31" name="updated_at">
+    <column id="49" parent="32" name="updated_at">
       <Position>9</Position>
       <DataType>timestamp with time zone|0s</DataType>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <index id="48" parent="31" name="flight_pkey">
-      <ObjectId>35562</ObjectId>
+    <column id="50" parent="32" name="deleted_at">
+      <Position>10</Position>
+      <DataType>timestamp with time zone|0s</DataType>
+      <StateNumber>1531</StateNumber>
+      <TypeId>1184</TypeId>
+    </column>
+    <index id="51" parent="32" name="flight_pkey">
+      <ObjectId>51571</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="49" parent="31" name="flight_serial_number_key">
-      <ObjectId>35564</ObjectId>
+    <index id="52" parent="32" name="flight_serial_number_key">
+      <ObjectId>51573</ObjectId>
       <ColNames>serial_number</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="50" parent="31" name="flight_pkey">
-      <ObjectId>35563</ObjectId>
+    <key id="53" parent="32" name="flight_pkey">
+      <ObjectId>51572</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>flight_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <key id="51" parent="31" name="flight_serial_number_key">
-      <ObjectId>35565</ObjectId>
+    <key id="54" parent="32" name="flight_serial_number_key">
+      <ObjectId>51574</ObjectId>
       <ColNames>serial_number</ColNames>
       <UnderlyingIndexName>flight_serial_number_key</UnderlyingIndexName>
     </key>
-    <column id="52" parent="32" name="id">
+    <column id="55" parent="33" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <DefaultExpression>nextval(&apos;flight_discount_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>20</TypeId>
       <SequenceName>flight_discount_id_seq</SequenceName>
     </column>
-    <column id="53" parent="32" name="value">
+    <column id="56" parent="33" name="value">
       <Position>2</Position>
       <DataType>numeric|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <column id="54" parent="32" name="flight_id">
+    <column id="57" parent="33" name="flight_id">
       <Position>3</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="55" parent="32" name="from_date">
+    <column id="58" parent="33" name="from_date">
       <Position>4</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <column id="56" parent="32" name="to_date">
+    <column id="59" parent="33" name="to_date">
       <Position>5</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <column id="57" parent="32" name="created_at">
+    <column id="60" parent="33" name="created_at">
       <Position>6</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <column id="58" parent="32" name="updated_at">
+    <column id="61" parent="33" name="updated_at">
       <Position>7</Position>
       <DataType>timestamp with time zone|0s</DataType>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <index id="59" parent="32" name="flight_discount_pkey">
-      <ObjectId>35575</ObjectId>
+    <column id="62" parent="33" name="deleted_at">
+      <Position>8</Position>
+      <DataType>timestamp with time zone|0s</DataType>
+      <StateNumber>1531</StateNumber>
+      <TypeId>1184</TypeId>
+    </column>
+    <index id="63" parent="33" name="flight_discount_pkey">
+      <ObjectId>51584</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="60" parent="32" name="flight_discount_pkey">
-      <ObjectId>35576</ObjectId>
+    <key id="64" parent="33" name="flight_discount_pkey">
+      <ObjectId>51585</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>flight_discount_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="61" parent="32" name="flight_discount_flight_id_fkey">
-      <ObjectId>35577</ObjectId>
+    <foreign-key id="65" parent="33" name="flight_discount_flight_id_fkey">
+      <ObjectId>51586</ObjectId>
       <ColNames>flight_id</ColNames>
-      <RefTableId>35555</RefTableId>
+      <RefTableId>51564</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>flight</RefTableName>
       <RefKeyName>flight_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="62" parent="33" name="installed_rank">
+    <column id="66" parent="34" name="installed_rank">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1363</StateNumber>
+      <StateNumber>1528</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="63" parent="33" name="version">
+    <column id="67" parent="34" name="version">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
-      <StateNumber>1363</StateNumber>
+      <StateNumber>1528</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="64" parent="33" name="description">
+    <column id="68" parent="34" name="description">
       <Position>3</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1363</StateNumber>
+      <StateNumber>1528</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="65" parent="33" name="type">
+    <column id="69" parent="34" name="type">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1363</StateNumber>
+      <StateNumber>1528</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="66" parent="33" name="script">
+    <column id="70" parent="34" name="script">
       <Position>5</Position>
       <DataType>varchar(1000)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1363</StateNumber>
+      <StateNumber>1528</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="67" parent="33" name="checksum">
+    <column id="71" parent="34" name="checksum">
       <Position>6</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>1363</StateNumber>
+      <StateNumber>1528</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="68" parent="33" name="installed_by">
+    <column id="72" parent="34" name="installed_by">
       <Position>7</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1363</StateNumber>
+      <StateNumber>1528</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="69" parent="33" name="installed_on">
+    <column id="73" parent="34" name="installed_on">
       <Position>8</Position>
       <DataType>timestamp|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1363</StateNumber>
+      <StateNumber>1528</StateNumber>
       <DefaultExpression>now()</DefaultExpression>
       <TypeId>1114</TypeId>
     </column>
-    <column id="70" parent="33" name="execution_time">
+    <column id="74" parent="34" name="execution_time">
       <Position>9</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1363</StateNumber>
+      <StateNumber>1528</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="71" parent="33" name="success">
+    <column id="75" parent="34" name="success">
       <Position>10</Position>
       <DataType>boolean|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1363</StateNumber>
+      <StateNumber>1528</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <index id="72" parent="33" name="flyway_schema_history_pk">
-      <ObjectId>35526</ObjectId>
+    <index id="76" parent="34" name="flyway_schema_history_pk">
+      <ObjectId>51535</ObjectId>
       <ColNames>installed_rank</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="73" parent="33" name="flyway_schema_history_s_idx">
-      <ObjectId>35528</ObjectId>
+    <index id="77" parent="34" name="flyway_schema_history_s_idx">
+      <ObjectId>51537</ObjectId>
       <ColNames>success</ColNames>
     </index>
-    <key id="74" parent="33" name="flyway_schema_history_pk">
-      <ObjectId>35527</ObjectId>
+    <key id="78" parent="34" name="flyway_schema_history_pk">
+      <ObjectId>51536</ObjectId>
       <ColNames>installed_rank</ColNames>
       <UnderlyingIndexName>flyway_schema_history_pk</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="75" parent="34" name="id">
+    <column id="79" parent="35" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <DefaultExpression>nextval(&apos;subscribe_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>20</TypeId>
       <SequenceName>subscribe_id_seq</SequenceName>
     </column>
-    <column id="76" parent="34" name="destination_from">
+    <column id="80" parent="35" name="destination_from">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="77" parent="34" name="destination_to">
+    <column id="81" parent="35" name="destination_to">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="78" parent="34" name="price_from">
+    <column id="82" parent="35" name="user_id">
       <Position>4</Position>
-      <DataType>numeric|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
-      <TypeId>1700</TypeId>
-    </column>
-    <column id="79" parent="34" name="price_to">
-      <Position>5</Position>
-      <DataType>numeric|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
-      <TypeId>1700</TypeId>
-    </column>
-    <column id="80" parent="34" name="date_from">
-      <Position>6</Position>
-      <DataType>timestamp with time zone|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
-      <TypeId>1184</TypeId>
-    </column>
-    <column id="81" parent="34" name="date_to">
-      <Position>7</Position>
-      <DataType>timestamp with time zone|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
-      <TypeId>1184</TypeId>
-    </column>
-    <column id="82" parent="34" name="user_id">
-      <Position>8</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="83" parent="34" name="created_at">
-      <Position>9</Position>
+    <column id="83" parent="35" name="created_at">
+      <Position>5</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <column id="84" parent="34" name="updated_at">
-      <Position>10</Position>
+    <column id="84" parent="35" name="updated_at">
+      <Position>6</Position>
       <DataType>timestamp with time zone|0s</DataType>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <index id="85" parent="34" name="subscribe_pkey">
-      <ObjectId>35630</ObjectId>
+    <column id="85" parent="35" name="deleted_at">
+      <Position>7</Position>
+      <DataType>timestamp with time zone|0s</DataType>
+      <StateNumber>1531</StateNumber>
+      <TypeId>1184</TypeId>
+    </column>
+    <index id="86" parent="35" name="subscribe_pkey">
+      <ObjectId>51639</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="86" parent="34" name="subscribe_pkey">
-      <ObjectId>35631</ObjectId>
+    <key id="87" parent="35" name="subscribe_pkey">
+      <ObjectId>51640</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>subscribe_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="87" parent="34" name="subscribe_user_id_fkey">
-      <ObjectId>35632</ObjectId>
+    <foreign-key id="88" parent="35" name="subscribe_user_id_fkey">
+      <ObjectId>51641</ObjectId>
       <ColNames>user_id</ColNames>
-      <RefTableId>35531</RefTableId>
+      <RefTableId>51540</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>user_table</RefTableName>
       <RefKeyName>user_table_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="88" parent="35" name="id">
+    <column id="89" parent="36" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <DefaultExpression>nextval(&apos;ticket_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>20</TypeId>
       <SequenceName>ticket_id_seq</SequenceName>
     </column>
-    <column id="89" parent="35" name="serial_number">
+    <column id="90" parent="36" name="serial_number">
       <Position>2</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="90" parent="35" name="flight_id">
+    <column id="91" parent="36" name="flight_id">
       <Position>3</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="91" parent="35" name="user_id">
+    <column id="92" parent="36" name="user_id">
       <Position>4</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="92" parent="35" name="place">
+    <column id="93" parent="36" name="place">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="93" parent="35" name="price">
+    <column id="94" parent="36" name="price">
       <Position>6</Position>
       <DataType>numeric|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <column id="94" parent="35" name="created_at">
+    <column id="95" parent="36" name="created_at">
       <Position>7</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <column id="95" parent="35" name="updated_at">
+    <column id="96" parent="36" name="updated_at">
       <Position>8</Position>
       <DataType>timestamp with time zone|0s</DataType>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <index id="96" parent="35" name="ticket_pkey">
-      <ObjectId>35607</ObjectId>
+    <column id="97" parent="36" name="deleted_at">
+      <Position>9</Position>
+      <DataType>timestamp with time zone|0s</DataType>
+      <StateNumber>1531</StateNumber>
+      <TypeId>1184</TypeId>
+    </column>
+    <index id="98" parent="36" name="ticket_pkey">
+      <ObjectId>51616</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="97" parent="35" name="ticket_serial_number_key">
-      <ObjectId>35609</ObjectId>
+    <index id="99" parent="36" name="ticket_serial_number_key">
+      <ObjectId>51618</ObjectId>
       <ColNames>serial_number</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="98" parent="35" name="ticket_pkey">
-      <ObjectId>35608</ObjectId>
+    <key id="100" parent="36" name="ticket_pkey">
+      <ObjectId>51617</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>ticket_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <key id="99" parent="35" name="ticket_serial_number_key">
-      <ObjectId>35610</ObjectId>
+    <key id="101" parent="36" name="ticket_serial_number_key">
+      <ObjectId>51619</ObjectId>
       <ColNames>serial_number</ColNames>
       <UnderlyingIndexName>ticket_serial_number_key</UnderlyingIndexName>
     </key>
-    <foreign-key id="100" parent="35" name="ticket_flight_id_fkey">
-      <ObjectId>35611</ObjectId>
+    <foreign-key id="102" parent="36" name="ticket_flight_id_fkey">
+      <ObjectId>51620</ObjectId>
       <ColNames>flight_id</ColNames>
-      <RefTableId>35555</RefTableId>
+      <RefTableId>51564</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>flight</RefTableName>
       <RefKeyName>flight_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="101" parent="35" name="ticket_user_id_fkey">
-      <ObjectId>35616</ObjectId>
+    <foreign-key id="103" parent="36" name="ticket_user_id_fkey">
+      <ObjectId>51625</ObjectId>
       <ColNames>user_id</ColNames>
-      <RefTableId>35531</RefTableId>
+      <RefTableId>51540</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>user_table</RefTableName>
       <RefKeyName>user_table_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="102" parent="36" name="id">
+    <column id="104" parent="37" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <DefaultExpression>nextval(&apos;token_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>20</TypeId>
       <SequenceName>token_id_seq</SequenceName>
     </column>
-    <column id="103" parent="36" name="value">
+    <column id="105" parent="37" name="value">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="104" parent="36" name="user_id">
+    <column id="106" parent="37" name="user_id">
       <Position>3</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="105" parent="36" name="created_at">
+    <column id="107" parent="37" name="created_at">
       <Position>4</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <column id="106" parent="36" name="updated_at">
+    <column id="108" parent="37" name="updated_at">
       <Position>5</Position>
       <DataType>timestamp with time zone|0s</DataType>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <index id="107" parent="36" name="token_pkey">
-      <ObjectId>35546</ObjectId>
+    <column id="109" parent="37" name="deleted_at">
+      <Position>6</Position>
+      <DataType>timestamp with time zone|0s</DataType>
+      <StateNumber>1531</StateNumber>
+      <TypeId>1184</TypeId>
+    </column>
+    <index id="110" parent="37" name="token_pkey">
+      <ObjectId>51555</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="108" parent="36" name="token_pkey">
-      <ObjectId>35547</ObjectId>
+    <key id="111" parent="37" name="token_pkey">
+      <ObjectId>51556</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>token_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="109" parent="36" name="token_user_id_fkey">
-      <ObjectId>35548</ObjectId>
+    <foreign-key id="112" parent="37" name="token_user_id_fkey">
+      <ObjectId>51557</ObjectId>
       <ColNames>user_id</ColNames>
-      <RefTableId>35531</RefTableId>
+      <RefTableId>51540</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>user_table</RefTableName>
       <RefKeyName>user_table_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="110" parent="37" name="id">
+    <column id="113" parent="38" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <DefaultExpression>nextval(&apos;user_discount_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>20</TypeId>
       <SequenceName>user_discount_id_seq</SequenceName>
     </column>
-    <column id="111" parent="37" name="value">
+    <column id="114" parent="38" name="value">
       <Position>2</Position>
       <DataType>numeric|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1700</TypeId>
     </column>
-    <column id="112" parent="37" name="user_id">
+    <column id="115" parent="38" name="user_id">
       <Position>3</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="113" parent="37" name="from_date">
+    <column id="116" parent="38" name="from_date">
       <Position>4</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <column id="114" parent="37" name="to_date">
+    <column id="117" parent="38" name="to_date">
       <Position>5</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <column id="115" parent="37" name="created_at">
+    <column id="118" parent="38" name="created_at">
       <Position>6</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <column id="116" parent="37" name="updated_at">
+    <column id="119" parent="38" name="updated_at">
       <Position>7</Position>
       <DataType>timestamp with time zone|0s</DataType>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <index id="117" parent="37" name="user_discount_pkey">
-      <ObjectId>35591</ObjectId>
+    <column id="120" parent="38" name="deleted_at">
+      <Position>8</Position>
+      <DataType>timestamp with time zone|0s</DataType>
+      <StateNumber>1531</StateNumber>
+      <TypeId>1184</TypeId>
+    </column>
+    <index id="121" parent="38" name="user_discount_pkey">
+      <ObjectId>51600</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="118" parent="37" name="user_discount_pkey">
-      <ObjectId>35592</ObjectId>
+    <key id="122" parent="38" name="user_discount_pkey">
+      <ObjectId>51601</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>user_discount_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="119" parent="37" name="user_discount_user_id_fkey">
-      <ObjectId>35593</ObjectId>
+    <foreign-key id="123" parent="38" name="user_discount_user_id_fkey">
+      <ObjectId>51602</ObjectId>
       <ColNames>user_id</ColNames>
-      <RefTableId>35531</RefTableId>
+      <RefTableId>51540</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>user_table</RefTableName>
       <RefKeyName>user_table_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="120" parent="38" name="id">
+    <column id="124" parent="39" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <DefaultExpression>nextval(&apos;user_table_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>20</TypeId>
       <SequenceName>user_table_id_seq</SequenceName>
     </column>
-    <column id="121" parent="38" name="username">
+    <column id="125" parent="39" name="username">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="122" parent="38" name="hash_password">
+    <column id="126" parent="39" name="hash_password">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="123" parent="38" name="role">
+    <column id="127" parent="39" name="role">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="124" parent="38" name="created_at">
+    <column id="128" parent="39" name="created_at">
       <Position>5</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <column id="125" parent="38" name="updated_at">
+    <column id="129" parent="39" name="updated_at">
       <Position>6</Position>
       <DataType>timestamp with time zone|0s</DataType>
-      <StateNumber>1366</StateNumber>
+      <StateNumber>1531</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <index id="126" parent="38" name="user_table_pkey">
-      <ObjectId>35538</ObjectId>
+    <column id="130" parent="39" name="deleted_at">
+      <Position>7</Position>
+      <DataType>timestamp with time zone|0s</DataType>
+      <StateNumber>1531</StateNumber>
+      <TypeId>1184</TypeId>
+    </column>
+    <index id="131" parent="39" name="user_table_pkey">
+      <ObjectId>51547</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="127" parent="38" name="user_table_pkey">
-      <ObjectId>35539</ObjectId>
+    <key id="132" parent="39" name="user_table_pkey">
+      <ObjectId>51548</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>user_table_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
+    <column id="133" parent="40" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1532</StateNumber>
+      <DefaultExpression>nextval(&apos;waiting_table_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>20</TypeId>
+      <SequenceName>waiting_table_id_seq</SequenceName>
+    </column>
+    <column id="134" parent="40" name="user_id">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1532</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="135" parent="40" name="destination_to">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1532</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="136" parent="40" name="created_at">
+      <Position>4</Position>
+      <DataType>timestamp with time zone|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1532</StateNumber>
+      <TypeId>1184</TypeId>
+    </column>
+    <column id="137" parent="40" name="updated_at">
+      <Position>5</Position>
+      <DataType>timestamp with time zone|0s</DataType>
+      <StateNumber>1532</StateNumber>
+      <TypeId>1184</TypeId>
+    </column>
+    <column id="138" parent="40" name="deleted_at">
+      <Position>6</Position>
+      <DataType>timestamp with time zone|0s</DataType>
+      <StateNumber>1532</StateNumber>
+      <TypeId>1184</TypeId>
+    </column>
+    <index id="139" parent="40" name="waiting_table_pkey">
+      <ObjectId>51652</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="140" parent="40" name="waiting_table_pkey">
+      <ObjectId>51653</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>waiting_table_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="141" parent="40" name="waiting_table_user_id_fkey">
+      <ObjectId>51654</ObjectId>
+      <ColNames>user_id</ColNames>
+      <RefTableId>51540</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>user_table</RefTableName>
+      <RefKeyName>user_table_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

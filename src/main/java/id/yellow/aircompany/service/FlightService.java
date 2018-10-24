@@ -13,8 +13,8 @@ public interface FlightService {
                                         String destFrom, String destTo, double priceFrom, double priceTo,
                                         String sortByDate, String sortByPrice);
 
-    FlightModelForUser getFlightById(long id);
+    FlightModelForUser getFlightById(long flightId);
     FlightModelForCreating createFlight(FlightModelForCreating flightModelForCreating);
-    FlightModelForCreating updateFlight(long id, FlightModelForCreating flightModelForCreating);
-    void deleteFlight(long id);
+    FlightModelForCreating updateFlight(long flightId, FlightModelForCreating flightModelForCreating);
+    void deleteFlight(long flightId);
 }

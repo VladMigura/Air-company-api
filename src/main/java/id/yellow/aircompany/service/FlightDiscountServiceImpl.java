@@ -32,24 +32,25 @@ public class FlightDiscountServiceImpl implements FlightDiscountService {
     private FlightRepository flightRepository;
 
     @Override
-    public List<FlightDiscountModel> getFlightDiscounts(int page, int pageSize, Integer valueTo) {
+    @PreAuthorize("@securityUtility.isAuthenticated()")
+    public List<FlightDiscountModel> getFlightDiscounts(int page, int pageSize, Integer valueFrom) {
 
         Pageable pageable = PageRequest.of(page - 1, pageSize);
         return FlightDiscountConverter.toFlightDiscountModels(flightDiscountRepository
-                .findAllByParameters(valueTo, pageable).getContent());
+                .findAllByParameters(valueFrom, pageable).getContent());
     }
 
     @Override
-    public FlightDiscountModel getFlightDiscount(long id) {
+    @PreAuthorize("@securityUtility.isAuthenticated()")
+    public FlightDiscountModel getFlightDiscount(long flightDiscountId) {
 
         return FlightDiscountConverter.toFlightDiscountModel(flightDiscountRepository
-                .findOneById(id));
+                .findOneById(flightDiscountId));
     }
 
     @Override
     @PreAuthorize("@securityUtility.isAdmin()")
     public List<Long> createFlightDiscount(int value, LocalDate dateFrom, LocalDate dateTo, List<Long> flightIds) {
-        List<Long> flightDiscountIds = new ArrayList<>();
 
         int totalPages = (flightIds == null) ?
                 flightRepository.findAll(PageRequest.of(0, PAGE_SIZE)).getTotalPages() :
@@ -63,34 +64,35 @@ public class FlightDiscountServiceImpl implements FlightDiscountService {
 
             List<Long> savedIds = flightEntities
                     .stream()
-                    .map(flight -> buildDiscount(value, dateFrom, dateTo, flight))
+                    .map(flightEntity -> buildDiscount(value, dateFrom, dateTo, flightEntity))
                     .peek(discount -> flightDiscountRepository.save(discount))
-                    .map(saved -> saved.getId())
+                    .map(FlightDiscountEntity::getId)
                     .collect(Collectors.toList());
 
             allIds.addAll(savedIds);
         }
 
-        return flightDiscountIds;
+        return allIds;
     }
 
     private FlightDiscountEntity buildDiscount(int value, LocalDate dateFrom,
-                                               LocalDate dateTo, FlightEntity flight) {
+                                               LocalDate dateTo, FlightEntity flightEntity) {
         return FlightDiscountEntity.builder()
                 .value(BigDecimal.valueOf(value))
-                .flightEntity(flight)
+                .flightEntity(flightEntity)
                 .fromDate(dateFrom.atStartOfDay().toInstant(ZoneOffset.UTC))
                 .toDate(dateTo.atStartOfDay().toInstant(ZoneOffset.UTC))
                 .build();
     }
 
     @Override
-    public void deleteFlightDiscount(long id) {
+    @PreAuthorize("@securityUtility.isAdmin()")
+    public void deleteFlightDiscount(long flightDiscountId) {
 
-        FlightDiscountEntity flightDiscountEntity = flightDiscountRepository.findOneById(id);
+        FlightDiscountEntity flightDiscountEntity = flightDiscountRepository.findOneById(flightDiscountId);
 
         if (flightDiscountEntity != null) {
-            flightDiscountRepository.deleteOneById(id);
+            flightDiscountRepository.deleteOneById(flightDiscountId);
         } else {
             throw new NotFoundException("Flight discount is not found!");
         }

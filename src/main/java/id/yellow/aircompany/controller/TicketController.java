@@ -15,25 +15,22 @@ public class TicketController {
     private TicketService ticketService;
 
     @GetMapping("/tickets")
-    public List<TicketModel> getTickets(@RequestParam(name = "userId") long userId) {
+    public List<TicketModel> getTickets(@RequestParam(name = "userId", required = false) Long userId) {
 
         return ticketService.getTickets(userId);
     }
 
     @GetMapping("/tickets/{ticketId}")
-    public TicketModel getTicket(@RequestParam(name = "userId") long userId,
-                                 @PathVariable long ticketId) {
+    public TicketModel getTicket(@PathVariable long ticketId) {
 
-        return ticketService.getTicketById(userId, ticketId);
+        return ticketService.getTicketById(ticketId);
     }
 
-    @PostMapping("/users/{id}/tickets")
+    @PostMapping("/tickets")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<TicketModel> createTickets(@PathVariable long id,
-                                    @RequestParam long flightId,
-                                    @RequestParam(required = false, defaultValue = "1") int count,
-                                    @RequestBody List<TicketModel> ticketModels) {
+    public List<TicketModel> createTickets(@RequestParam(required = false, defaultValue = "1") int count,
+                                           @RequestBody List<TicketModel> ticketModels) {
 
-        return ticketService.createTickets(id, flightId, count, ticketModels);
+        return ticketService.createTickets(ticketModels, count);
     }
 }

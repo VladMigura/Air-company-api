@@ -7,7 +7,6 @@ import id.yellow.aircompany.model.UserDiscountModel;
 import id.yellow.aircompany.repository.UserDiscountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
@@ -21,30 +20,29 @@ public class UserDiscountServiceImpl implements UserDiscountService {
 
     @Override
     @PreAuthorize("@securityUtility.isAdmin()")
-    public UserDiscountModel createUserDiscount(long id, UserDiscountModel userDiscountModel) {
+    public UserDiscountModel createUserDiscount(long userId, UserDiscountModel userDiscountModel) {
 
-        userDiscountModel.setUserId(id);
-        userDiscountModel = UserDiscountConverter.toUserDiscountModel(userDiscountRepository
+        userDiscountModel.setUserId(userId);
+        return UserDiscountConverter.toUserDiscountModel(userDiscountRepository
                 .save(UserDiscountConverter.toUserDiscountEntity(userDiscountModel)));
-        return userDiscountModel;
     }
 
     @Override
-    @PreAuthorize("@securityUtility.isOwnerById(#id) or @securityUtility.isAdmin()")
-    public List<UserDiscountModel> getUserDiscounts(long id, int page, int pageSize) {
+    @PreAuthorize("@securityUtility.isOwnerById(#userId) or @securityUtility.isAdmin()")
+    public List<UserDiscountModel> getUserDiscounts(long userId, int page, int pageSize) {
 
         return UserDiscountConverter.toUserDiscountModels(userDiscountRepository
-                .findAll(PageRequest.of(page - 1, pageSize)).getContent());
+                .findAllByUserId(userId, PageRequest.of(page - 1, pageSize)).getContent());
     }
 
     @Override
     @PreAuthorize("@securityUtility.isAdmin()")
-    public void deleteUserDiscount(long id) {
+    public void deleteUserDiscount(long userDiscountId) {
 
-        UserDiscountEntity userDiscountEntity = userDiscountRepository.findOneById(id);
+        UserDiscountEntity userDiscountEntity = userDiscountRepository.findOneById(userDiscountId);
 
         if(userDiscountEntity != null) {
-            userDiscountRepository.deleteOneById(id);
+            userDiscountRepository.deleteOneById(userDiscountId);
         } else {
             throw new NotFoundException("User discount is not found!");
         }

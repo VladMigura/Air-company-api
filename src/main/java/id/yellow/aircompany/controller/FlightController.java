@@ -36,10 +36,10 @@ public class FlightController {
                                         priceFrom, priceTo, sortByDate, sortByPrice);
     }
 
-    @GetMapping("/flights/{id}")
-    public FlightModelForUser getFlightById(@PathVariable long id) {
+    @GetMapping("/flights/{flightId}")
+    public FlightModelForUser getFlightById(@PathVariable long flightId) {
 
-        return flightService.getFlightById(id);
+        return flightService.getFlightById(flightId);
     }
 
     @PostMapping("/flights")
@@ -49,17 +49,17 @@ public class FlightController {
         return flightService.createFlight(flightModelForCreating);
     }
 
-    @PutMapping("/flights/{id}")
-    public FlightModelForCreating updateFlight(@PathVariable long id,
+    @PutMapping("/flights/{flightId}")
+    public FlightModelForCreating updateFlight(@PathVariable long flightId,
                                                @RequestBody FlightModelForCreating flightModelForCreating) {
 
-        return flightService.updateFlight(id, flightModelForCreating);
+        return flightService.updateFlight(flightId, flightModelForCreating);
     }
 
-    @DeleteMapping("/flights/{id}")
+    @DeleteMapping("/flights/{flightId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteFlight(@PathVariable long id) {
+    public void deleteFlight(@PathVariable long flightId) {
 
-        flightService.deleteFlight(id);
+        flightService.deleteFlight(flightId);
     }
 }

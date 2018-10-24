@@ -19,15 +19,15 @@ public class FlightDiscountController {
     @GetMapping("/discounts")
     public List<FlightDiscountModel> getFlightDiscounts(@RequestParam(name = "page", required = false, defaultValue = "1") int page,
                                                         @RequestParam(name = "pageSize", required = false, defaultValue = "20") int pageSize,
-                                                        @RequestParam(name = "valueTo", required = false) Integer valueTo) {
+                                                        @RequestParam(name = "valueFrom", required = false) Integer valueFrom) {
 
-        return flightDiscountService.getFlightDiscounts(page, pageSize, valueTo);
+        return flightDiscountService.getFlightDiscounts(page, pageSize, valueFrom);
     }
 
-    @GetMapping("/discounts/{id}")
-    public FlightDiscountModel getFlightDiscount(@PathVariable long id) {
+    @GetMapping("/discounts/{flightDiscountId}")
+    public FlightDiscountModel getFlightDiscount(@PathVariable long flightDiscountId) {
 
-        return flightDiscountService.getFlightDiscount(id);
+        return flightDiscountService.getFlightDiscount(flightDiscountId);
     }
 
     @PostMapping("/discounts")
@@ -40,13 +40,13 @@ public class FlightDiscountController {
                                                     @RequestParam(name = "flightIds",
                                                             required = false) List<Long> flightIds) {
 
-        return flightDiscountService.createFlightDiscount(value,dateFrom, dateTo, flightIds);
+        return flightDiscountService.createFlightDiscount(value, dateFrom, dateTo, flightIds);
     }
 
-    @DeleteMapping("/discounts/{id}")
+    @DeleteMapping("/discounts/{flightDiscountId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteFlightDiscount(@PathVariable long id) {
+    public void deleteFlightDiscount(@PathVariable long flightDiscountId) {
 
-        flightDiscountService.deleteFlightDiscount(id);
+        flightDiscountService.deleteFlightDiscount(flightDiscountId);
     }
 }

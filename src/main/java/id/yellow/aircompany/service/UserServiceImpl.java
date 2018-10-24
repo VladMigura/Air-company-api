@@ -11,7 +11,6 @@ import id.yellow.aircompany.repository.TokenRepository;
 import id.yellow.aircompany.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,6 +30,7 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Override
+    @PreAuthorize("@securityUtility.isAuthenticated()")
     public List<UserModel> getUsers(int page, int pageSize) {
 
         return UserConverter.toUserModels(userRepository
@@ -38,9 +38,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserModel getUserById(long id) {
+    @PreAuthorize("@securityUtility.isAuthenticated()")
+    public UserModel getUserById(long userId) {
 
-        UserEntity userEntity = userRepository.findOneById(id);
+        UserEntity userEntity = userRepository.findOneById(userId);
 
         if(userEntity != null) {
             return UserConverter.toUserModel(userEntity);
@@ -71,9 +72,7 @@ public class UserServiceImpl implements UserService {
         if(userEntity != null && passwordEncoder.matches(loginModel.getPassword(), userEntity.getHashPassword())) {
             TokenEntity tokenEntity = TokenConverter.toTokenEntity(loginModel, userEntity.getId());
 
-            tokenEntity = tokenRepository.save(tokenEntity);
-
-            return TokenConverter.toTokenModel(tokenEntity);
+            return TokenConverter.toTokenModel(tokenRepository.save(tokenEntity));
         }
 
         throw new NotFoundException("User not found!");

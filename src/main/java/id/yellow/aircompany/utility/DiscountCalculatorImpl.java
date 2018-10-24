@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 @Component
@@ -28,7 +29,8 @@ public class DiscountCalculatorImpl implements DiscountCalculator {
 
         double totalDiscount = (100 - flightDiscountValue) * userDiscountValue / 100 + flightDiscountValue;
 
-        return BigDecimal.valueOf(flightPrice.doubleValue() * (100 - totalDiscount) / 100);
+        return BigDecimal.valueOf(flightPrice.doubleValue() * (100 - totalDiscount) / 100)
+                .setScale(2, RoundingMode.HALF_UP);
     }
 
     @Override
@@ -40,7 +42,8 @@ public class DiscountCalculatorImpl implements DiscountCalculator {
         double totalDiscount = (100 - flightDiscountValue) * userDiscountValue / 100 + flightDiscountValue;
 
         flightModelForUser.setPriceWithDiscount(BigDecimal
-                .valueOf(flightModelForUser.getPrice().doubleValue() * (100 - totalDiscount) / 100));
+                .valueOf(flightModelForUser.getPrice().doubleValue() * (100 - totalDiscount) / 100)
+                .setScale(2, RoundingMode.HALF_UP));
 
         return flightModelForUser;
     }
@@ -56,7 +59,8 @@ public class DiscountCalculatorImpl implements DiscountCalculator {
             double totalDiscount = (100 - flightDiscountValue) * userDiscountValue / 100 + flightDiscountValue;
 
             flightModelForUser.setPriceWithDiscount(BigDecimal
-                    .valueOf(flightModelForUser.getPrice().doubleValue() * (100 - totalDiscount) / 100));
+                    .valueOf(flightModelForUser.getPrice().doubleValue() * (100 - totalDiscount) / 100)
+                    .setScale(2, RoundingMode.HALF_UP));
         }
 
         return flightModelsForUser;

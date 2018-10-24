@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserDiscountService {
 
-    UserDiscountModel createUserDiscount(long id, UserDiscountModel userDiscountModel);
-    List<UserDiscountModel> getUserDiscounts(long id, int page, int pageSize);
-    void deleteUserDiscount(long id);
+    UserDiscountModel createUserDiscount(long userId, UserDiscountModel userDiscountModel);
+    List<UserDiscountModel> getUserDiscounts(long userId, int page, int pageSize);
+    void deleteUserDiscount(long userDiscountId);
 }

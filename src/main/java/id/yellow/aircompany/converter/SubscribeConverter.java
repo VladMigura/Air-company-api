@@ -15,10 +15,6 @@ public class SubscribeConverter {
                 .id(subscribeEntity.getId())
                 .destinationFrom(subscribeEntity.getDestinationFrom())
                 .destinationTo(subscribeEntity.getDestinationTo())
-                .priceFrom(subscribeEntity.getPriceFrom())
-                .priceTo(subscribeEntity.getPriceTo())
-                .dateFrom(subscribeEntity.getDateFrom())
-                .dateTo(subscribeEntity.getDateTo())
                 .userId(subscribeEntity.getUserEntity().getId())
                 .build();
     }
@@ -39,10 +35,6 @@ public class SubscribeConverter {
         return SubscribeEntity.builder()
                 .destinationFrom(subscribeModel.getDestinationFrom())
                 .destinationTo(subscribeModel.getDestinationTo())
-                .priceFrom(subscribeModel.getPriceFrom())
-                .priceTo(subscribeModel.getPriceTo())
-                .dateFrom(subscribeModel.getDateFrom())
-                .dateTo(subscribeModel.getDateTo())
                 .userEntity(UserEntity.builder().id(subscribeModel.getUserId()).build())
                 .build();
     }

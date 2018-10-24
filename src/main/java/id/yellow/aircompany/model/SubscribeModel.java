@@ -17,9 +17,5 @@ public class SubscribeModel {
     private long id;
     private String destinationFrom;
     private String destinationTo;
-    private BigDecimal priceFrom;
-    private BigDecimal priceTo;
-    private Instant dateFrom;
-    private Instant dateTo;
     private long userId;
 }
